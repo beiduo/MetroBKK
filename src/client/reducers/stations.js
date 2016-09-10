@@ -7,11 +7,16 @@ const initialState = {
 }
 
 function fetchStationsRequest(state, action) {
-    return state;
+    return Object.assign({}, state, {
+        isFetching: true
+    });
 }
 
 function fetchStationsReceive(state, action) {
-    return action.data;
+    return Object.assign({}, state, {
+        isFetching: false,
+        items: action.data
+    });
 }
 
 function fetchStationsError(state, action) {
@@ -19,6 +24,7 @@ function fetchStationsError(state, action) {
 }
 
 function stations(state=initialState, action) {
+    console.log(action.type);
     switch (action.type) {
         case actionTypes.FETCH_STATIONS_REQUEST:
             return fetchStationsRequest(state, action);

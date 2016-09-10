@@ -6,7 +6,6 @@ import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import createLogger from 'redux-logger';
 import { Provider } from 'react-redux';
 import { Router, Route, Link, IndexRedirect, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
@@ -18,7 +17,7 @@ import App from './containers/app';
 import RouteMap from './components/routeMap';
 import Stations from './components/stations';
 
-const loggerMiddleware = createLogger();
+
 
 // const createStoreWithMiddleware = applyMiddleware(
 // //  thunkMiddleware, // 允许我们 dispatch() 函数

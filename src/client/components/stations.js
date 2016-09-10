@@ -17,7 +17,13 @@ class Stations extends Component {
         } = this.props;
         return (
             <div>
-                Station
+                <ul>
+                    {stations.items.map((station) => {
+                        return (
+                            <li key={station._id}>{station.name}</li>
+                        );
+                    })}
+                </ul>
             </div>
         )
     }
