@@ -12,7 +12,7 @@ import { Router, Route, Link, IndexRedirect, browserHistory } from 'react-router
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 import rootReducer from './reducers';
-// import configureStore from './store/configureStore';
+import configureStore from './store/configureStore';
 
 import App from './containers/app';
 import RouteMap from './components/routeMap';
@@ -20,15 +20,17 @@ import Stations from './components/stations';
 
 const loggerMiddleware = createLogger();
 
-const createStoreWithMiddleware = applyMiddleware(
-//  thunkMiddleware, // 允许我们 dispatch() 函数
-    loggerMiddleware // 一个很便捷的 middleware，用来打印 action 日志
-)(createStore);
+// const createStoreWithMiddleware = applyMiddleware(
+// //  thunkMiddleware, // 允许我们 dispatch() 函数
+//     loggerMiddleware // 一个很便捷的 middleware，用来打印 action 日志
+// )(createStore);
 
-const preLoadedState = {
-};
+// const preLoadedState = {
+// };
 
-const store = createStoreWithMiddleware(rootReducer, preLoadedState);
+// const store = createStoreWithMiddleware(rootReducer, preLoadedState);
+
+const store = configureStore();
 const root = document.getElementById('root');
 
 // Create an enhanced history that syncs navigation events with the store

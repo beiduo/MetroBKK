@@ -1,7 +1,20 @@
 import React, { Component, PropTypes } from 'react';
+import { fetchStationsRequest } from '../actions';
+
+import { connect } from 'react-redux';
 
 class Stations extends Component {
+    componentDidMount() {
+        this.props.fetchStationsRequest();
+    }
+
+    componentWillReceiveProps(nextProps) {
+    }
+
     render() {
+        const {
+            stations
+        } = this.props;
         return (
             <div>
                 Station
@@ -13,4 +26,9 @@ class Stations extends Component {
 Stations.PropTypes = {
 }
 
-export default Stations;
+export default connect(
+  ({ stations }, ownProps) => ({
+    stations
+  }),
+  { fetchStationsRequest }
+)(Stations);
