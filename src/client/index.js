@@ -14,20 +14,8 @@ import rootReducer from './reducers';
 import configureStore from './store/configureStore';
 
 import App from './containers/app';
-import RouteMap from './components/routeMap';
-import Stations from './components/stations';
-
-
-
-// const createStoreWithMiddleware = applyMiddleware(
-// //  thunkMiddleware, // 允许我们 dispatch() 函数
-//     loggerMiddleware // 一个很便捷的 middleware，用来打印 action 日志
-// )(createStore);
-
-// const preLoadedState = {
-// };
-
-// const store = createStoreWithMiddleware(rootReducer, preLoadedState);
+import RouteMap from './containers/routeMap';
+import Stations from './containers/stations';
 
 const store = configureStore();
 const root = document.getElementById('root');
@@ -39,7 +27,7 @@ render((
     <Provider store={store}>
         <Router history={history}>
             <route path="/" component={App}>
-                <IndexRedirect to="/map" />
+                <IndexRedirect to="/stations" />
                 <route path="map" component={RouteMap} />
                 <route path="stations" component={Stations} />
             </route>
