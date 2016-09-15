@@ -35,8 +35,6 @@
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
     "redux-observable": "^0.9.1",
-    "redux-rx": "^0.5.0",
-    "redux-thunk": "^2.1.0",
     "rx": "^4.1.0",
     "rxjs": "^5.0.0-beta.11",
     "svg-react-loader": "^0.3.7"

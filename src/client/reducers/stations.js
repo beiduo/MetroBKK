@@ -15,7 +15,17 @@ function fetchStationsRequest(state, action) {
 function fetchStationsReceive(state, action) {
     return Object.assign({}, state, {
         isFetching: false,
-        items: action.data
+        items: action.data.map(station => {
+            let obj = {};
+            station.line
+                .split('; ')
+                .forEach(function(item) {
+                    obj[item.toLowerCase().split(' ').join('-')] = item;
+                }, this);
+            return Object.assign({}, station, {
+                lineAlias: obj
+            })
+        })
     });
 }
 

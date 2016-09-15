@@ -10,7 +10,6 @@ import { Provider } from 'react-redux';
 import { Router, Route, Link, IndexRedirect, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
-import rootReducer from './reducers';
 import configureStore from './store/configureStore';
 
 import App from './containers/app';
@@ -26,11 +25,13 @@ const history = syncHistoryWithStore(browserHistory, store);
 render((
     <Provider store={store}>
         <Router history={history}>
-            <route path="/" component={App}>
+            <Route path="/" component={App}>
                 <IndexRedirect to="/stations" />
-                <route path="map" component={RouteMap} />
-                <route path="stations" component={Stations} />
-            </route>
+                <Route path="map" component={RouteMap} />
+                <Route path="stations" component={Stations}>
+                    <Route path="/stations/:line" component={Stations}/>
+                </Route>
+            </Route>
         </Router>
     </Provider>
 ), root);

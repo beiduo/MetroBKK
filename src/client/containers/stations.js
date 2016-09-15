@@ -1,7 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
+import { connect } from 'react-redux';
+
 import { fetchStationsRequest } from '../actions';
 
-import { connect } from 'react-redux';
+import StationTab from '../components/stationTab';
+import StationItem from '../components/stationItem';
 
 class Stations extends Component {
     componentDidMount() {
@@ -11,19 +15,33 @@ class Stations extends Component {
     componentWillReceiveProps(nextProps) {
     }
 
+    stationsFilter(items, line) {
+        if (typeof line === 'undefined') {
+            return items;
+        } else {
+            return items.filter(station => {
+                return station.lineAlias[line];
+            })
+        }
+    }
+
     render() {
+        console.log(this.props.params.line);
         const {
             stations
         } = this.props;
+
         return (
-            <div>
-                <ul>
-                    {stations.items.map((station) => {
+            <div className="stations">
+                <StationTab />
+                <div className="list">
+                    {this.stationsFilter(stations.items, this.props.params.line)
+                        .map((station) => {
                         return (
-                            <li key={station._id}>{station.name}</li>
+                            <StationItem key={station._id} station={station} />
                         );
                     })}
-                </ul>
+                </div>
             </div>
         )
     }
